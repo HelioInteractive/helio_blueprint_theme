@@ -127,3 +127,17 @@ require get_template_directory() . '/inc/extras.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+/**
+ * Page Slug Body Class
+ * adds the page post type and slug "type-slug" as a class to the body element, A quick way to target styles that exist on a specific page to prevent collateral damage
+ */
+
+function add_slug_body_class( $classes ) {
+	global $post;
+	if ( isset( $post ) ) {
+		$classes[] = $post->post_type . '-' . $post->post_name;
+	}
+	return $classes;
+}
+add_filter( 'body_class', 'add_slug_body_class' );
