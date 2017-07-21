@@ -141,3 +141,10 @@ function add_slug_body_class( $classes ) {
 	return $classes;
 }
 add_filter( 'body_class', 'add_slug_body_class' );
+
+// Move Yoast to bottom of post/page editor
+//need to test if this requires a conditional (though we always use yoast safety is nice to have)
+function yoasttobottom() {
+	return 'low';
+}
+add_filter( 'wpseo_metabox_prio', 'yoasttobottom');
